@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>📚 Smart Library</h1>
+  <p>Library Management System</p>
+</header>
+
+<main>
+  <section id="loginView" class="card">
+    <h2>Login</h2>
+    <select id="role">
+      <option value="STUDENT">Student</option>
+      <option value="LIBRARIAN">Librarian</option>
+    </select>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="loginMsg"></p>
+    <small>Demo: student1/student123 | librarian1/librarian123</small>
+  </section>
+
+  <section id="studentView" class="hidden">
+    <div class="topbar"><h2>Student Dashboard</h2><button onclick="logout()">Logout</button></div>
+    <div id="studentInfo" class="stats"></div>
+    <div class="card">
+      <h3>Available Books</h3>
+      <div id="bookList" class="grid"></div>
+    </div>
+    <div class="card">
+      <h3>My Borrowals</h3>
+      <div id="myBorrowals"></div>
+    </div>
+  </section>
+
+  <section id="librarianView" class="hidden">
+    <div class="topbar"><h2>Librarian Dashboard</h2><button onclick="logout()">Logout</button></div>
+    <div id="libStats" class="stats"></div>
+
+    <div class="card">
+      <h3>Add Book</h3>
+      <div class="formrow">
+        <input id="bookTitle" placeholder="Book title">
+        <input id="bookAuthor" placeholder="Author">
+        <input id="bookSection" placeholder="Section e.g. CSE">
+        <input id="bookQty" type="number" value="1" min="1">
+        <button onclick="addBook()">Add Book</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Add Student</h3>
+      <div class="formrow">
+        <input id="studentName" placeholder="Student name">
+        <input id="studentUsername" placeholder="Username">
+        <input id="studentPassword" placeholder="Password">
+        <button onclick="addStudent()">Add Student</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Books</h3>
+      <div id="allBooks"></div>
+    </div>
+
+    <div class="card">
+      <h3>Students</h3>
+      <div id="students"></div>
+    </div>
+
+    <div class="card">
+      <h3>Borrowals / Submissions</h3>
+      <div id="borrowals"></div>
+    </div>
+  </section>
+</main>
+<script src="js/app.js"></script>
+</body>
+</html>
