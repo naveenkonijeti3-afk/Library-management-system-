@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student | Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Library</h1>
+  <div class="who"><span id="who"></span><button class="btn ghost small" onclick="api.logout()">Log out</button></div>
+</header>
+<nav class="menu">
+  <button data-panel="p-browse" aria-selected="true">Find books</button>
+  <button data-panel="p-mine" aria-selected="false">My books</button>
+  <button data-panel="p-rewards" aria-selected="false">Rewards &amp; fines</button>
+</nav>
+<main>
+  <div class="stats" id="stats"></div>
+
+  <section class="panel active" id="p-browse">
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search by title, author or ISBN" aria-label="Search books">
+      <select id="sectionFilter" aria-label="Filter by section"><option value="">All sections</option></select>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Book</th><th>Section</th><th>Available</th><th></th></tr></thead>
+      <tbody id="bookRows"></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel" id="p-mine">
+    <div class="panel-head"><h2>My books</h2></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Book</th><th>Borrowed</th><th>Due</th><th>Status</th><th></th></tr></thead>
+      <tbody id="myRows"></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel" id="p-rewards">
+    <div class="panel-head"><h2>Rewards &amp; fines</h2></div>
+    <ul class="feed" id="notes"></ul>
+  </section>
+</main>
+<div id="toast"></div>
+<script src="js/api.js"></script>
+<script src="js/student.js"></script>
+</body>
+</html>

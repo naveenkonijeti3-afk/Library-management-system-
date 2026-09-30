@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Librarian | Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Library · Librarian desk</h1>
+  <div class="who"><span id="who"></span><button class="btn ghost small" onclick="api.logout()">Log out</button></div>
+</header>
+<nav class="menu">
+  <button data-panel="p-overview" aria-selected="true">Overview</button>
+  <button data-panel="p-books" aria-selected="false">Books</button>
+  <button data-panel="p-sections" aria-selected="false">Sections</button>
+  <button data-panel="p-loans" aria-selected="false">Borrowals &amp; returns</button>
+  <button data-panel="p-students" aria-selected="false">Students</button>
+</nav>
+<main>
+  <!-- Overview -->
+  <section class="panel active" id="p-overview">
+    <div class="stats" id="stats"></div>
+    <div class="panel-head"><h2>Recent activity</h2></div>
+    <ul class="feed" id="logs"></ul>
+  </section>
+
+  <!-- Books -->
+  <section class="panel" id="p-books">
+    <div class="panel-head"><h2>Books</h2><button class="btn" id="toggleBook">Add book</button></div>
+    <form class="form-card" id="bookForm">
+      <div class="form-grid">
+        <div><label for="bTitle">Title</label><input id="bTitle" required></div>
+        <div><label for="bAuthor">Author</label><input id="bAuthor" required></div>
+        <div><label for="bIsbn">ISBN (optional)</label><input id="bIsbn"></div>
+        <div><label for="bSection">Section</label><select id="bSection" required></select></div>
+        <div><label for="bCopies">Copies</label><input id="bCopies" type="number" min="1" value="1" required></div>
+      </div>
+      <button class="btn" style="margin-top:16px">Save book</button>
+    </form>
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search books" aria-label="Search books">
+      <select id="sectionFilter" aria-label="Filter by section"><option value="">All sections</option></select>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Book</th><th>Section</th><th>Available</th><th></th></tr></thead>
+      <tbody id="bookRows"></tbody>
+    </table></div>
+  </section>
+
+  <!-- Sections -->
+  <section class="panel" id="p-sections">
+    <div class="panel-head"><h2>Sections</h2></div>
+    <form class="toolbar" id="secForm">
+      <input id="secName" placeholder="New section name" required aria-label="New section name">
+      <button class="btn" style="flex:0">Add section</button>
+    </form>
+    <div class="section-grid" id="secGrid"></div>
+  </section>
+
+  <!-- Borrowals -->
+  <section class="panel" id="p-loans">
+    <div class="panel-head"><h2>Borrowals &amp; returns</h2>
+      <select id="loanFilter" style="width:auto" aria-label="Filter borrowals">
+        <option value="borrowed">Currently borrowed</option>
+        <option value="overdue">Overdue</option>
+        <option value="returned">Returned</option>
+        <option value="">All</option>
+      </select>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Book</th><th>Student</th><th>Borrowed</th><th>Due</th><th>Status</th><th></th></tr></thead>
+      <tbody id="loanRows"></tbody>
+    </table></div>
+  </section>
+
+  <!-- Students -->
+  <section class="panel" id="p-students">
+    <div class="panel-head"><h2>Students</h2><button class="btn" id="toggleStudent">Add student</button></div>
+    <form class="form-card" id="studentForm">
+      <div class="form-grid">
+        <div><label for="sName">Full name</label><input id="sName" required></div>
+        <div><label for="sRoll">Roll number</label><input id="sRoll"></div>
+        <div><label for="sEmail">Email</label><input id="sEmail" type="email" required></div>
+        <div><label for="sPass">Temporary password</label><input id="sPass" type="text" minlength="6" required></div>
+      </div>
+      <button class="btn" style="margin-top:16px">Create student account</button>
+    </form>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Student</th><th>Roll no.</th><th>Books out</th><th>Points</th><th>Unpaid fines</th><th></th></tr></thead>
+      <tbody id="studentRows"></tbody>
+    </table></div>
+  </section>
+</main>
+<div id="toast"></div>
+<script src="js/api.js"></script>
+<script src="js/librarian.js"></script>
+</body>
+</html>
